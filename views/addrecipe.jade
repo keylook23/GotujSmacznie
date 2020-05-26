@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= title
+  body
+    block content
+    h1= "Dodaj przepis"
+    form(method="post" action="/addrecipe")
+      label(for='name') 
+      p Imię autora: 
+            input#name.form-control(type='text', name='name')
+      label(for='dish') 
+      p Nazwa Dania: 
+            input#name.form-control(type='text', name='name')
+      label(for='products') 
+      p Produkty: 
+            input#name.form-control(type='text', name='name')
+      label(for='time') 
+      p Czas przygotowania: 
+            input#name.form-control(type='text', name='name')
+      label(for='description') 
+      p Opis przygotowania: 
+            input#name.form-control(type='text', name='name')
+      input#submit.form-control(type="submit" value="Dodaj przepis")
