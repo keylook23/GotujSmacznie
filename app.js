@@ -3,14 +3,42 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addrecipeRouter = require('./routes/addrecipe');
 var readrecipeRouter = require('./routes/readrecipe');
 
+var app = express();
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
+
+
+
+
+var dbConn = mongodb.MongoClient.connect('mongodb+srv://keylook:maSBpzURP4GLdKFN@cluster0-swqvi.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true } );
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.resolve(__dirname, 'views')));
+
+app.post('/addrecipe', function (req, res) {
+    dbConn.then(function(db) {
+        delete req.body._id; // for safety reasons
+        db.collection('feedbacks').insertOne(req.body);
+    });    
+    res.send('Data received:\n' + JSON.stringify(req.body));
+});
+
+app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0' );
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,26 +71,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var mongodb = require('mongodb');
-var dbConn = mongodb.MongoClient.connect('mongodb+srv://keylook:maSBpzURP4GLdKFN@cluster0-swqvi.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true , useNewUrlParser: true } );
-var app = express();
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.resolve(__dirname, 'views')));
-
-app.post('/addrecipe', function (req, res) {
-    dbConn.then(function(db) {
-        delete req.body._id; // for safety reasons
-        db.collection('feedbacks').insertOne(req.body);
-    });    
-    res.send('Data received:\n' + JSON.stringify(req.body));
-});
-
-app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0' );
-
-
-
 module.exports = app;
+
+
