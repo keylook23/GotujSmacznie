@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  div(id="info")
+
+  table.table  
+    thead
+      tr
+        th="Nazwa dania"
+        th="Rodzaj posiłku"
+        th="Składniki"
+        th="Sposób przygotowania"
+        th="Obrazek"
+      tbody
+        for recipe in recipes 
+          .container
+            tr
+              td= recipe.name
+              td= recipe.kind
+              td= recipe.ingredients
+              td= recipe.preparation
+              td= recipe.picture

@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  if bform
+    .container
+        form(method='POST' action='/recipe/add' enctype="application/x-www-form-urlencoded" )
+          .form-group
+            label Nazwa dania
+            input.form-control(type='text', name='name', autocomplete="nope")
+          .form-group
+            label Rodzaj posiłku
+            input.form-control(type='text', name='kind', autocomplete="nope", placeholder="np. danie główne")
+          .form-group
+            label Składniki
+            input.form-control(type='text', name='ingredients', autocomplete="nope",)
+          .form-group
+            label Sposób przygotowania
+            input.form-control(type='text', name='preparation', autocomplete="nope")
+          .form-group
+            label Załącz obrazek
+            input.form-control(type='file', name='picture')
+          .form-group
+          button.btn.btn-secondary(type='submit') ZAPISZ
+  else
+    h2= name
+    h2= kind
+    h2= ingredients
+    h2= preparation

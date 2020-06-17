@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    form(method='POST' action='/users/login' enctype="application/x-www-form-urlencoded")
+        .form-group 
+            label Email
+            input.form-control(type='email', name='email', autocomplete="nope", placeholder="name@example.com")
+        .form-group 
+            label Hasło
+            input.form-control(type='password', name='pass', autocomplete="nope")
+        button.btn.btn-primary(type='submit') Zaloguj

@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    script(type='text/javascript' src='/jquery.min.js')
+    script(type='text/javascript' src='/js/bootstrap.min.js')
+    script(type='text/javascript' src='/javascripts/ajax.js')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  body
+    header
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary
+        .container-fluid
+          .navbar-header
+            span.navbar-toggler-icon(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')   
+          .collapse.navbar-collapse(id='navbarSupportedContent')
+            ul.navbar-nav.mr-auto
+              li.nav-item
+                a.nav-link(href='/') Strona Główna
+              li.nav-item
+                a.nav-link(href='/recipe') Przepisy
+                if(user==null)
+                  li.nav-item
+                    a.nav-link(href='/users/register') Rejestracja
+                  li.nav-item
+                    a.nav-link(href='/users/login') Zaloguj
+                else
+                  li.nav-item
+                    a.nav-link(href='/users/logout') Wyloguj
+                  li.nav-item
+                    a.nav-link(href='/recipe/add') Dodaj Przepis
+            ul.navbar-nav.navbar-right
+              li.nav-item.dropdown
+                a.nav-link.dropdown-toggle(id='navbarDropdownMenuLink', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Opcje
+                .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                  a.dropdown-item(href='/') Strona Główna
+                  a.dropdown-item(href='/recipe') Przepisy
+                  if(user==null)
+                    a.dropdown-item(href='/users/register') Rejestracja
+                    a.nav-link(href='/users/login') Zaloguj
+                  else
+                    a.dropdown-item(href='/users/logout') Wyloguj    
+                    a.dropdown-item(href='/recipe/add') Dodaj Przepis
+  section
+    block content
+    footer(style="margin-top : 1em")
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary
+        p Serwis internetowy, Damian Zachara, 2020
