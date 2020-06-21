@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1= title
+  div(id="info")
+
+  table.table   
+    thead
+      tr
+        th Nazwa dania:
+        th Rodziaj:
+        th Składniki:
+        th Przygotowanie:
+        th Obraz:
+        th Przepis zamieścił:
+        if !(user == null)
+          th Kasowanie:
+          th Edytowanie:
+    tbody     
+      for recipe in recipes 
+        .container
+          tr
+            td= recipe.name
+            td= recipe.kind
+            td= recipe.ingredients
+            td= recipe.preparation
+            td 
+              img(src="/recipes/photo/"+recipe.id height='60')
+            td= recipe.owner
+            if !(user == null)
+              td
+               button.btn.btn-dark
+                  a(href="/recipes/delete/"+recipe.id) KASUJ
+              td 
+                button.btn.btn-dark
+                  a(href="/recipes/update/"+recipe.id) EDYTUJ
+            
+

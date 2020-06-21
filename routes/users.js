@@ -1,6 +1,7 @@
 var express = require('express');
 var User = require('../database/model/user');
 var router = express.Router();
+var createError = require('http-errors');
 var bcrypt = require('bcrypt')
 
 const salt = 10;
@@ -12,7 +13,7 @@ router.get('/', function (req, res, next) {
       if (error || !user) {
         res.send('Błąd odczytu bazy danych');
       } else {
-        res.render('users', { title: "Lista użytkowników", users: user })
+        res.render('users', { title: "Lista użytkowników", users: user, user: req.user })
       }
     }
   )
@@ -20,7 +21,10 @@ router.get('/', function (req, res, next) {
 
 /* GET register form. */
 router.get('/register', function (req, res, next) {
+  if(req.user == null)
   res.render('register', { title: 'Zarejestruj użytkownika', bform: true });
+  else
+  res.redirect("/")
 });
 
 /* POST register form. */
@@ -36,7 +40,7 @@ router.post('/register', function (req, res, next) {
   }, (error, result) => {
     if (error) {
       console.log(error);
-      res.send(error.name + ': ' + error.errmsg);
+      res.send('BŁĄD: '+error.name+': '+error.errmsg);
     }
     else
       res.redirect("/");
@@ -109,14 +113,16 @@ router.get('/login', function (req, res, next) {
 router.post('/login', function(req, res, next) {
  
   const hash = bcrypt.hashSync(req.body.pass, salt);
+  console.log("PASS: "+req.body.pass);
+  console.log("HASH CODE: "+hash);
 
   User.findOne(
     {
     email : req.body.email
   }, (error,user) => {
     if(error || !user) {
-        console.log("BLAD: "+req.body.email)
-        next(createError(404, 'Nie znaleziono strony'))
+        console.log("BLAD: ")
+        next(createError(404, 'Nie znaleziono użytkownika'))
     } else { 
       if(bcrypt.compareSync(req.body.pass, user.password)) {
         res.cookie('user', req.body.email,{signed: true});
@@ -128,7 +134,8 @@ router.post('/login', function(req, res, next) {
   })
 })
 
-router.get('/logout', function(req, res) {
+/* GET logout form */
+router.get('/logout', function(req, res, next) {
   res.clearCookie('user', {signed: false});
   res.redirect('/');
 });  
