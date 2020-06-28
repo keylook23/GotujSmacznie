@@ -6,18 +6,18 @@ block content
         form(method='POST' action='/recipes/add' enctype="multipart/form-data" )
           .form-group
             label Nazwa dania
-            input.form-control(type='text', name='name', autocomplete="nope")
+            input.form-control(type='text', name='name', autocomplete="nope", placeholder="np. frytki z selera", required)
           .form-group
             label Rodzaj posiłku
-            input.form-control(type='text', name='kind', autocomplete="nope", placeholder="np. danie główne")
+            input.form-control(type='text', name='kind', autocomplete="nope", placeholder="np. przystawka", required)
           .form-group
             label Składniki
-            input.form-control(type='text', name='ingredients', autocomplete="nope",)
+            input.form-control(type='text', name='ingredients', autocomplete="nope", placeholder="np. seler, przyprawy, olej", required)
           .form-group
             label Sposób przygotowania
-            input.form-control(type='text', name='preparation', autocomplete="nope")
+            input.form-control(type='text', name='preparation', autocomplete="nope", placeholder="np. Selera pokroić w kształt frytek, obtoczyć przyprawami, smażyć 15min na głębokim oleju.", required)
           .form-group
             label Załącz obrazek
-            input.form-control(type='file', name='picture')
+            input.form-control(type='file', name='picture', required)
           .form-group
-            button.btn.btn-secondary(type='submit') ZAPISZ
+            button.btn.btn-dark(type='submit') ZAPISZ

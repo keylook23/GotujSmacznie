@@ -1,8 +1,28 @@
 body {
+  background-image: url(https://www.xmple.com/wallpaper/yellow-gradient-linear-purple-1920x1080-c2-ffd700-8b008b-a-225-f-14.svg);
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: whitesmoke;
+}
+
+p {
+  color: whitesmoke;
+}
+label{
+  color: whitesmoke;
+}
+h1{
+  color: whitesmoke;
+}
+h2{
+  color: whitesmoke;
+}
+th{
+  color: whitesmoke;
+}
+td{
+  color: whitesmoke;
 }

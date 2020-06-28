@@ -7,32 +7,34 @@ block content
   table.table   
     thead
       tr
-        th Nazwa dania:
-        th Rodziaj:
+        th Obrazek:
+        th Nazwa:
+        th Rodzaj:
         th Składniki:
         th Przygotowanie:
-        th Obraz:
-        th Przepis zamieścił:
-        if !(user == null)
-          th Kasowanie:
-          th Edytowanie:
+        th Autor:
+        th Kasowanie:
+        th Edytowanie:
     tbody     
       for recipe in recipes 
         .container
           tr
+            td 
+              img(src="/recipes/photo/"+recipe.id height='60')
             td= recipe.name
             td= recipe.kind
             td= recipe.ingredients
             td= recipe.preparation
-            td 
-              img(src="/recipes/photo/"+recipe.id height='60')
             td= recipe.owner
-            if !(user == null)
+            if (user == recipe.owner)
               td
                button.btn.btn-dark
                   a(href="/recipes/delete/"+recipe.id) KASUJ
               td 
                 button.btn.btn-dark
-                  a(href="/recipes/update/"+recipe.id) EDYTUJ
+                  a(href="/recipes/edit/"+recipe.id) EDYTUJ
+            else
+              td= "Niedostępne"
+              td= "Niedostępne"
             
 

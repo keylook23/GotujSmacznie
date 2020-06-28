@@ -1,7 +1,9 @@
 extends layout
 
 block content
-    H1 Witamy na stronie Gotuj Smacznie
-    if(login)
-      H2 Użytkownik !{user} zalogował się
+  H1 Witamy w serwisie Gotuj Smacznie
+  if(login)
+    H2 Użytkownik !{user} zalogował się
+  else
+    H2 Aby móc dodawać nowe przepisy proszę się zalogować
         

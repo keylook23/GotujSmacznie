@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+    .container
+        form(method='POST' action='/recipes/edit/'+id enctype="application/x-www-form-urlencoded" )
+          .form-group
+            label Nazwa dania
+            input.form-control.validate(type='text', name='name')&attributes({'value' : name})
+          .form-group
+            label Rodzaj posiłku
+            input.form-control.validate(type='text', name='kind')&attributes({'value' : kind})
+          .form-group
+            label Składniki
+            input.form-control.validate(type='text', name='ingredients')&attributes({'value' : ingredients})
+          .form-group
+            label Sposób przygotowania
+            input.form-control.validate(type='text', name='preparation')&attributes({'value' : preparation})
+          .form-group
+            label Załącz obrazek
+            input.form-control(type='file', name='picture', required)
+          .form-group
+          button.btn.btn-dark(type='submit') EDYTUJ

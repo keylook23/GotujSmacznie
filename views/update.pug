@@ -2,7 +2,6 @@ extends layout
 
 block content
   h1= title
-  if bform
     .container
         form(method='POST' action='/users/update/'+id enctype="application/x-www-form-urlencoded" )
           .form-group
@@ -15,11 +14,4 @@ block content
             label Email
             input.form-control.validate(type='email', name='email')&attributes({'value' : email})
           .form-group
-          button.btn.btn-secondary(type='submit') EDYTUJ
-  else
-    h2= name
-    h2= surname
-    h2= email
-
-
-    
+          button.btn.btn-dark(type='submit') EDYTUJ

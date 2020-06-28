@@ -2,6 +2,7 @@ extends layout
 
 block content
     h1= title
+    h2= info
     .input-group
         form(method='POST' action='/users/login' enctype="application/x-www-form-urlencoded")
             .form-group 
@@ -10,4 +11,5 @@ block content
             .form-group 
                 label Hasło
                 input.form-control(type='password', name='pass', autocomplete="nope")
-            button.btn.btn-primary(type='submit') Zaloguj
+            button.btn.btn-dark(type='submit')
+                a ZALOGUJ

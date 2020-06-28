@@ -10,7 +10,7 @@ const recipeSchema = new mongoose.Schema({
   picture_type: { type: String, trim: true, required: true }, 
   picture_size: { type: Number, required: true},
   picture_data: { type: Buffer, required: true}, 
-  post_date: {type: Date, default: Date.now()}
+  picture_date: {type: Date, default: Date.now()}
 });
 
 var Recipe = mongoose.model('Recipe', recipeSchema);

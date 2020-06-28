@@ -10,8 +10,8 @@ block content
         th="Imię"
         th="Nazwisko"
         th="Email"
-        th="Kasowanie"
-        th="Edytowanie"
+        th="Opcje administracyjne"
+        th=" "
       tbody
         for user in users 
           .container
@@ -21,8 +21,8 @@ block content
               td= user.email
               td
                 button.btn.btn-dark
-                  a(href="/users/delete/"+user.id) KASUJ
-              td 
+                  a(href="/users/delete/"+user.id) KASUJ 
+              td
                 button.btn.btn-dark
                   a(href="/users/update/"+user.id) EDYTUJ
 

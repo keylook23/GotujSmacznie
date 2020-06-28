@@ -2,27 +2,24 @@ extends layout
 
 block content
   h1= title
+  h2= info
   if bform
     .container
         form(method='POST' action='/users/register' enctype="application/x-www-form-urlencoded" )
           .form-group
             label Imię
-            input.form-control(type='text', name='name', autocomplete="nope")
+            input.form-control(type='text', name='name', autocomplete="nope", placeholder="Jan", required)
           .form-group
             label Nazwisko
-            input.form-control(type='text', name='surname', autocomplete="nope")
+            input.form-control(type='text', name='surname', autocomplete="nope", placeholder="Kowalski", required)
           .form-group
             label Email
-            input.form-control(type='email', name='email', autocomplete="nope", placeholder="name@example.com")
+            input.form-control(type='email', name='email', autocomplete="nope", placeholder="jankowalski@mail.com", required)
           .form-group
-            label Wpisz Hasło
-            input.form-control(type='password', name='pass', autocomplete="nope")
+            label Wpisz hasło
+            input.form-control(type='password', name='pass', autocomplete="nope", required)
           .form-group
             label Wpisz hasło ponownie
-            input.form-control(type='password', name='repass', autocomplete="nope")
+            input.form-control(type='password', name='repass', autocomplete="nope", required)
           .form-group
-          button.btn.btn-secondary(type='submit') ZAPISZ
-  else
-    h2= name
-    h2= surname
-    h2= email
+          button.btn.btn-dark(type='submit') ZAPISZ
